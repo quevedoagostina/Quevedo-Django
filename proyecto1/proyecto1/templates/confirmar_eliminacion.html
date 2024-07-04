@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Confirmar eliminación{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <a href="/">Inicio</a>
+        <a href="/productos">Lista de Productos</a>
+    </div>
+    <h1>¿Estás seguro que deseas eliminar el producto "{{ producto.nombre }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+        <a href="/productos">Cancelar</a>
+    </form>
+{% endblock %}

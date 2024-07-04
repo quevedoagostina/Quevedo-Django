@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Carrito de compras{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <a href="/">Inicio</a>
+        <a href="/carrito">Carrito</a>
+    </div>
+    <div class="cart-container">
+        <h1>Carrito de Compras</h1>
+        <ul>
+            {% for item in items %}
+            <li>
+                {{ item.producto.nombre }} - Cantidad: {{ item.cantidad }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

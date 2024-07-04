@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <div class="welcome-box">
+        <h1>Bienvenido a Nuestro Sitio</h1>
+        <p>Este es el inicio de nuestro sitio web hecho con Django.</p>
+        <p>Tasa de cambio USD a MXN: {{ exchange_rate }}</p>
+    </div>
+
+    <div class="product-grid">
+        {% for producto in productos %}
+        <div class="product-card">
+            <h2>{{ producto.nombre }}</h2>
+            <p>{{ producto.descripcion }}</p>
+            <p class="product-price">Precio: ${{ producto.precio }}</p>
+            <p class="product-stock">Stock: {{ producto.stock }}</p>
+            <a href="{% url 'detalle_producto' pk=producto.pk %}" class="link-detail">Ver más</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

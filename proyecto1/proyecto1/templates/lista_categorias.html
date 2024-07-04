@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Lista de Categorías{% endblock %}
+
+{% block content %}
+<div class="navbar">
+    <a href="/">Inicio</a>
+    <a href="/productos">Lista de Productos</a>
+</div>
+<h1>Categorías</h1>
+<a href="{% url 'crear_categoria' %}" class="btn btn-primary form-button">Crear nueva categoría</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for categoria in categorias %}
+        <tr>
+            <td>{{ categoria.nombre }}</td>
+            <td>
+                <a href="{% url 'actualizar_categoria' pk=categoria.pk %}" class="btn btn-sm btn-outline-secondary edit-button">Editar</a>
+                <a href="{% url 'detalle_categoria' pk=categoria.pk %}" class="btn btn-sm btn-outline-info link-detail">Ver más</a>
+                <a href="{% url 'eliminar_categoria' pk=categoria.pk %}" class="btn btn-sm btn-outline-danger delete-button">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

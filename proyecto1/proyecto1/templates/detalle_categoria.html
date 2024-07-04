@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Detalle de Categoría{% endblock %}
+
+{% block content %}
+<div class="navbar">
+    <a href="/">Inicio</a>
+    <a href="/categorias">Lista de Categorías</a>
+</div>
+<div class="category-details">
+    <h1>{{ categoria.nombre }}</h1>
+    <!-- Si tienes más campos para categorías, puedes agregarlos aquí -->
+    <div class="details-section">
+        <!-- Aquí podrías incluir detalles como el número de productos en la categoría, etc. -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Detalle de producto{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <a href="/">Inicio</a>
+        <a href="/productos">Lista de Productos</a>
+    </div>
+    <div class="product-details">
+        <h1>{{ producto.nombre }}</h1>
+        <p>{{ producto.descripcion }}</p>
+        <div class="details-section">
+            <p class="product-price">Precio: ${{ producto.precio }}</p>
+            <p class="product-stock">Stock: {{ producto.stock }}</p>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>{{ review.usuario.username }}</strong>
+                    <p>Puntuación: {{ review.puntuacion }}</p>
+                    <p>{{ review.comentario }}</p>
+                    <small>{{ review.fecha_creacion }}</small>
+                    <ul>
+                        {% for respuesta in review.respuestas.all %}
+                            <li>
+                                <strong>{{ respuesta.usuario.username }}</strong>
+                                <p>{{ respuesta.comentario }}</p>
+                                <small>{{ respuesta.fecha_creacion }}</small>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ respuesta_form.as_p }}
+                        <input type="hidden" name="review_id" value="{{ review.id }}">
+                        <button type="submit">Responder</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="add-review">
+        <h3>Añadir Review</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+{% endblock %}

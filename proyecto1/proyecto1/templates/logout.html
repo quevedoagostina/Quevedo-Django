@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <a href="/">Inicio</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Registrarse</a>
+    </div>
+    <div class="logout-container">
+        <h1>Has cerrado sesión exitosamente</h1>
+        <p>Gracias por visitarnos. Esperamos verte pronto.</p>
+        <a href="/" class="button">Volver al inicio</a>
+    </div>
+{% endblock %}

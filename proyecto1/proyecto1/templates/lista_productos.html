@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Lista de productos{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <a href="/">Inicio</a>
+        <a href="/productos">Lista de Productos</a>
+        <a href="/crear_producto">Crear Producto</a>
+        <form method="get" action=".">
+            <input type="text" name="q" placeholder="Buscar productos..." value="{{ query }}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="product-grid">
+        {% for producto in productos %}
+        <div class="product-card">
+            <h2>{{ producto.nombre }}</h2>
+            <p>{{ producto.descripcion }}</p>
+            <p class="product-price">Precio: ${{ producto.precio }}</p>
+            <p class="product-stock">Stock: {{ producto.stock }}</p>
+            <a href="{% url 'actualizar_producto' pk=producto.pk %}" class="button edit-button">Editar</a>
+            <a href="{% url 'eliminar_producto' pk=producto.pk %}" class="button delete-button">Eliminar</a>
+            <a href="{% url 'detalle_producto' pk=producto.pk %}" class="link-detail">Ver más</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
